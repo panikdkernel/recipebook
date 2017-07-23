@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-header></app-header>
-      <app-recipes></app-recipes>
-      <app-shopping-list></app-shopping-list>
+      <app-header (sendActive)="activateSelection($event)"></app-header>
+      <app-recipes *ngIf="selectedLink==='recipes'"></app-recipes>
+      <app-shopping-list *ngIf="selectedLink==='shoppingList'"></app-shopping-list>
     </div>
   </div>
 </div>

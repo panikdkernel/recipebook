@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector : 'app-header',
@@ -7,11 +7,26 @@ import {Component,OnInit} from '@angular/core';
 })
 
 export class HeaderComponent implements OnInit {
-    constructor() {
+    
+    @Output() sendActive = new EventEmitter<string>();
 
+    active = "recipes";
+    
+    constructor() {
+        
     }
 
     ngOnInit() {
+  }
+
+  recipesActive() {
+    this.active = "recipes";
+    this.sendActive.emit(this.active);
+  }
+
+  shoppingListActive() {
+    this.active = "shoppingList";
+    this.sendActive.emit(this.active); 
   }
     
 }
