@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-md-5">
-    <app-recipe-list></app-recipe-list>
+    <app-recipe-list (selectedRecipe)="gotRecipe = $event"></app-recipe-list>
+    <hr>
   </div>
-  <div class="col-md-7">
-    <app-recipe-detail></app-recipe-detail>
+  <div class="col-md-7 well">
+    <app-recipe-detail  *ngIf = "gotRecipe; else noRecipe" [recipe]="gotRecipe"></app-recipe-detail>
+    <ng-template #noRecipe>
+      <p>No recipe was selected</p>
+    </ng-template>
   </div>
 </div>
