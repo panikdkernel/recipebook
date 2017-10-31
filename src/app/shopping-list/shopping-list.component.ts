@@ -7,14 +7,30 @@ import {Ingredient} from '../shared/ingredients.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingredients: Ingredient[] = [new Ingredient('Apples',3),new Ingredient('Oranges',5)];
+  ingredients: Ingredient[] = [{
+    name: 'Apples',
+    amount: 5
+  }, {
+    name: 'Oranges',
+    amount: 6
+  }];
   constructor() { }
 
   ngOnInit() {
   }
 
-  addIngredient(ingredient : Ingredient) {
-    this.ingredients.push(ingredient);
+  addIngredient(ingredient: Ingredient) {
+    let isExist = false;
+    this.ingredients.forEach((indiIngredient: Ingredient) => {
+      if (indiIngredient.name === ingredient.name) {
+        indiIngredient.amount += ingredient.amount;
+        console.log(typeof indiIngredient.amount);
+        isExist = true;
+      }
+    });
+    if (!isExist) {
+      this.ingredients.push(ingredient);
+    }
   }
 
 }
