@@ -3,9 +3,12 @@
         <app-shopping-edit (ingCreated)="addIngredient($event)"></app-shopping-edit>
         <hr>
         <ul class="list-group">
-            <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients">
-                {{ingredient.name}} ({{ingredient.amount}})
-            </a>
+            <li class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients">
+                <strong>{{ingredient.name}}</strong> ({{ingredient.amount}})
+                <button type="button" class="close" aria-label="Close" (click)="removeIngredent(ingredient)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
         </ul>
     </div>
 </div>

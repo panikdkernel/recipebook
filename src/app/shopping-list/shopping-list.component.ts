@@ -33,4 +33,9 @@ export class ShoppingListComponent implements OnInit {
     }
   }
 
+  removeIngredent(ingredient) {
+    const pos = this.ingredients.indexOf(ingredient);
+    this.ingredients.splice(pos, 1);
+  }
+
 }
