@@ -20,11 +20,14 @@ export class ShoppingEditComponent implements OnInit {
   createIngredient() {
     const ingName: string = this.nameInput.nativeElement.value;
     const ingAmount: number = parseInt(this.amountInput.nativeElement.value);
-    const newIngredient: Ingredient = {
-      name: ingName,
-      amount: ingAmount
+    if (!isNaN(ingAmount)) {
+      const newIngredient: Ingredient = {
+        name: ingName,
+        amount: ingAmount
+      }
+      this.ingCreated.emit(newIngredient);
     }
-    this.ingCreated.emit(newIngredient);
+
   }
 
 }
