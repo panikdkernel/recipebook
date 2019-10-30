@@ -14,9 +14,20 @@ export class ShoppingListComponent implements OnInit {
     name: 'Oranges',
     amount: 6
   }];
+
+  searchResults: Ingredient[] = this.ingredients.slice();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  searchIngredient(searchText: string) {
+    searchText = searchText.toLowerCase();
+    if (searchText.length === 0)
+      this.searchResults = this.ingredients.slice();
+    this.searchResults = this.ingredients.filter(ingredient => {
+      return ingredient.name.toLowerCase().includes(searchText);
+    })
   }
 
   addIngredient(ingredient: Ingredient) {
@@ -31,11 +42,13 @@ export class ShoppingListComponent implements OnInit {
     if (!isExist) {
       this.ingredients.push(ingredient);
     }
+    this.searchResults = this.ingredients.slice();
   }
 
   removeIngredent(ingredient) {
     const pos = this.ingredients.indexOf(ingredient);
     this.ingredients.splice(pos, 1);
+    this.searchResults = this.ingredients.slice();
   }
 
 }
