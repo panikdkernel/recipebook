@@ -11,11 +11,18 @@ export class RecipeListComponent implements OnInit {
   @Output() selectedRecipe = new EventEmitter<Recipe>();
   recipes: Recipe[] = [new Recipe('Fries','French fries made in france ofc duh!','https://i.ytimg.com/vi/ETTyVQrUZt8/maxresdefault.jpg'),
   new Recipe('veg sandwich','A simple veg sandwich.','http://www.vegrecipesofindia.com/wp-content/uploads/2016/04/bombay-veg-sandwich-recipes21.jpg')];
+
+  newReceipe: Recipe = new Recipe("", "", "");
   
   
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    this.recipes.push(this.newReceipe);
+    this.newReceipe = new Recipe("", "", "");
   }
 
   onSelect(recipe:Recipe) {

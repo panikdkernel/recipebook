@@ -28,5 +28,10 @@ export class HeaderComponent implements OnInit {
     this.active = "shoppingList";
     this.sendActive.emit(this.active); 
   }
+
+  newRecepieActive() {
+    this.active = "addRecepie";
+    this.sendActive.emit(this.active); 
+  }
     
 }
