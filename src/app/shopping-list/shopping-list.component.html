@@ -3,13 +3,20 @@
         <app-shopping-edit (ingCreated)="addIngredient($event)" (ingSearch)="searchIngredient($event)"></app-shopping-edit>
         <hr>
         <ul class="list-group">
-            <li class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of searchResults">
+            <li class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of searchResults; let RowIndex = index" >
                 <strong>{{ingredient.name}}</strong> ({{ingredient.amount}})
+                <button class="btn btn-primary" (click)="editList(RowIndex)">Edit</button>
                 <button type="button" class="close" aria-label="Close" (click)="removeIngredent(ingredient)">
                     <span aria-hidden="true">&times;</span>
                 </button>
+
             </li>
         </ul>
+        <div class="edit" *ngIf="editIngredient.name.length!==0">
+            <label for="name">Name</label>
+            <input [value]="editIngredient.name" name="name" class="form-control" (keyup)="editIngredient.name = name.value" #name/>
+            <button (click)="edit()" class="btn btn-primary">Submit</button>
+        </div>
     </div>
 </div>
 

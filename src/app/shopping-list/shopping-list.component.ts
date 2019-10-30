@@ -15,6 +15,10 @@ export class ShoppingListComponent implements OnInit {
     amount: 6
   }];
 
+  editIndex: number = -1;
+
+  editIngredient: Ingredient = {name: '', amount: 0};
+
   searchResults: Ingredient[] = this.ingredients.slice();
   constructor() { }
 
@@ -43,6 +47,18 @@ export class ShoppingListComponent implements OnInit {
       this.ingredients.push(ingredient);
     }
     this.searchResults = this.ingredients.slice();
+  }
+
+  edit(){
+    this.ingredients[this.editIndex] = this.editIngredient;
+    this.editIngredient = {name: "", amount: 0}
+    this.editIndex = -1;
+    this.searchResults = this.ingredients.slice();
+  }
+
+  editList(index: string) {
+    this.editIndex = parseInt(index)
+    this.editIngredient = Object.assign({}, this.ingredients[this.editIndex]);
   }
 
   removeIngredent(ingredient) {
