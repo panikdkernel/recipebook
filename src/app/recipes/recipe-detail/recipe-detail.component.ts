@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Recipe } from "app/recipes/recipe.model";
 
 @Component({
@@ -9,10 +9,28 @@ import { Recipe } from "app/recipes/recipe.model";
 export class RecipeDetailComponent implements OnInit {
 
   @Input() recipe :Recipe;
+  isEditRecipe:boolean = false;
+  @Output() editRecipe = new EventEmitter<Recipe>();
+  recipeClone: Recipe;
 
-  constructor() { }
+  constructor() {
+    this.recipeClone = {name: "", desc: "", imageURL: ""}
+  }
 
   ngOnInit() {
+    
+  }
+  
+  ngOnChanges() {
+    this.recipeClone = Object.assign({}, this.recipe)
+  }
+
+  toggleEditRecipe(){
+    this.isEditRecipe = !this.isEditRecipe;
+  }
+
+  onSubmit(){
+    this.editRecipe.emit(this.recipeClone);
   }
 
 }
