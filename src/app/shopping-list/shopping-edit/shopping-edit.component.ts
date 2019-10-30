@@ -9,12 +9,17 @@ import { Ingredient } from 'app/shared/ingredients.model';
 export class ShoppingEditComponent implements OnInit {
 
   @Output() ingCreated = new EventEmitter<Ingredient>();
+  @Output() ingSearch = new EventEmitter<string>();
   @ViewChild('nameInput') nameInput: ElementRef;
   @ViewChild('amountInput')  amountInput: ElementRef;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onKey(searchText) {
+    this.ingSearch.emit(searchText)
   }
 
   createIngredient() {
